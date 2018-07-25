@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import View from './containers/CounterContainer';
+import CounterContainer from './containers/CounterContainer';
 
-ReactDOM.render(<View />, document.getElementById('root'));
+ReactDOM.render(<CounterContainer />, document.getElementById('root'));
 registerServiceWorker();

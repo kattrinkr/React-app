@@ -5,19 +5,19 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Styles from './styles';
 
-const Counter = ({count, increment, decrement, reset, ...props}) => {
+const Counter = ({count, increment, decrement, reset, classes}) => {
     return (
-      <div className={props.classes.wrapper}> 
-        <Typography variant="display2" gutterBottom className={props.classes.digit}>
+      <div className={classes.wrapper}> 
+        <Typography variant="display2" gutterBottom className={classes.digit}>
          {count}
         </Typography>
-        <Button variant="contained" color="primary" onClick={increment} className={props.classes.button}>
+        <Button variant="contained" color="primary" onClick={increment} className={classes.button}>
          Plus
         </Button>
-        <Button variant="contained" color="primary" onClick={decrement} className={props.classes.button}>
+        <Button variant="contained" color="primary" onClick={decrement} className={classes.button}>
          Minus
         </Button>
-        <Button variant="contained" color="primary" onClick={reset} className={props.classes.button}>
+        <Button variant="contained" color="primary" onClick={reset} className={classes.button}>
          Reset
         </Button>
      </div>

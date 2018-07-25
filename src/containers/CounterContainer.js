@@ -1,35 +1,55 @@
 import React, { Component } from 'react';
 import Counter from '../views/Counter/index'
 
-class View extends Component {
+class CounterContainer extends Component {
     constructor(props){
         super(props); 
           
-        this.state = {count: 0};
+        this.state = {
+            count: 0
+        };
         
         this.increment = this.increment.bind(this);
         this.decrement = this.decrement.bind(this);
         this.reset = this.reset.bind(this);
     }
         
-    increment(){
-        this.setState({count: ++this.state.count})
+    increment(){        
+        this.setState((prevState) => {
+            return {
+                count: prevState.count + 1
+            }
+        })
     }
 
     decrement(){
-        this.setState({count: --this.state.count})
+        this.setState((prevState) => {
+            return {
+                count: prevState.count - 1
+            }
+        })
     }
 
     reset(){
-        this.setState({count: 0})
+        this.setState(() => {
+            return {
+                count: 0
+            }
+        })
     }
 
     render() {
-        return <Counter count={this.state.count}
-                     increment = {this.increment}
-                     decrement = {this.decrement}
-                     reset = {this.reset}></Counter>;
+        const { count } = this.state;
+
+        const props = {
+            count,
+            increment: this.increment,
+            decrement: this.decrement,
+            reset: this.reset
+        }
+
+        return <Counter {...props} />;
     }
 }
 
-export default View;
+export default CounterContainer;
