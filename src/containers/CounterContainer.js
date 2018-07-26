@@ -38,6 +38,39 @@ class CounterContainer extends Component {
         })
     }
 
+    /*static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('getDerivedStateFromProps'
+            + ' --nextProps= ' + nextProps.count
+            + ' --prevState= ' + prevState.count);
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount: ' + this.state.count);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate'
+            + ' --nextProps= ' + nextProps.count
+            + ' --nextState= ' + nextState.count);
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate'
+            + ' --prevProps= ' + prevProps.count
+            + ' --prevState= ' + prevState.count);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('>componentDidUpdate()'
+            + ' --prevProps= ' + prevProps.count
+            + ' --prevState= ' + prevState.count
+            + ' --snapshot= ' + snapshot);
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }*/
+
     render() {
         const { count } = this.state;
 

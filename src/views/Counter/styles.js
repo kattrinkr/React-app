@@ -1,19 +1,23 @@
 const Styles = theme => ({
   wrapper: {
-    width: '130px'
+    width: '160px',
+    display: 'inline-block'
   },
 
   digit: {
-    width: '110px',
     textAlign: 'center',
     margin: '10px'
   }, 
 
+  buttons: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+
   button: {
     width: '110px',
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '10px'
+    margin: '5px'
   }
 });
 
