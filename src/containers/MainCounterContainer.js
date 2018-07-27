@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CounterContainer from './CounterContainer'
-import MainCounter from '../views/MainCounter/index'
-import ReactDOM from 'react-dom';
+import GlobalInterface from '../views/GlobalInterface/index'
 
 class MainCounterContainer extends Component {
     constructor(props){
@@ -9,7 +8,6 @@ class MainCounterContainer extends Component {
           
         this.state = {
             countOfCounters: 1,
-            functions : [],
             operation : null
         };
         
@@ -20,27 +18,26 @@ class MainCounterContainer extends Component {
 
     increment(){  
         this.setState((prevState) => {
-            this.state.functions.push(<CounterContainer />);
             return {
                 countOfCounters: prevState.countOfCounters + 1,
-                operation: 'increment'
+                operation: 'increment',
             }
         }) 
     }
 
     decrement(){
-        this.setState((prevState) => {
-            this.state.functions.pop();
-            return {
-                countOfCounters: prevState.countOfCounters - 1,
-                operation: 'decrement'
-            }
-        })
+        if (this.state.countOfCounters > 1) {
+            this.setState((prevState) => {
+                return {
+                    countOfCounters: prevState.countOfCounters - 1,
+                    operation: 'decrement'
+                }
+            })
+        }
     }
 
     reset(){
         this.setState((prevState) => {
-            this.state.functions = [];
             return {
                 countOfCounters: 1,
                 operation: 'reset'
@@ -50,19 +47,21 @@ class MainCounterContainer extends Component {
 
     render() {
         console.log('Mounting and Update методы у MainCounterContainer')
+        const { operation } = this.state;
+
+        let counterContainers = [];
+        for (let i = 0; i < this.state.countOfCounters; i++) {
+            counterContainers.push(<CounterContainer />);
+        }
         const props = {
             increment: this.increment,
             decrement: this.decrement,
-            reset: this.reset
+            reset: this.reset,
+            counterContainers: counterContainers,
+            operation
         }
-
-        const { operation } = this.state;
-        return (
-        <div>
-          <MainCounter {...props} />
-          <CounterContainer operation={operation} key={0}/>
-          {this.state.functions.map((object, i) => <CounterContainer operation={operation} key={i+1}/>)}
-        </div>) ;
+        
+        return <GlobalInterface {...props} />     
     }
 }
 
