@@ -1,11 +1,11 @@
 import React from 'react'
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Styles from './styles';
 
-const MainCounter = ({count, increment, decrement, reset, classes}) => {
+const MainCounter = ({increment, decrement, reset, classes}) => {
     return (
       <div className={classes.wrapper}> 
         <Typography variant="display2" gutterBottom className={classes.h1}>
@@ -26,11 +26,10 @@ const MainCounter = ({count, increment, decrement, reset, classes}) => {
     )
 }
 
-/*Counter.propTypes = {
-    count: PropTypes.number.isRequired,
+MainCounter.propTypes = {
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired
-}*/
+}
 
 export default withStyles(Styles)(MainCounter)

@@ -50,9 +50,7 @@ class MainCounterContainer extends Component {
 
     render() {
         console.log('Mounting and Update методы у MainCounterContainer')
-        const { countOfCounters } = this.state;
         const props = {
-            countOfCounters,
             increment: this.increment,
             decrement: this.decrement,
             reset: this.reset
