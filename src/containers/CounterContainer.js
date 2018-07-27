@@ -4,7 +4,6 @@ import Counter from '../views/Counter/index'
 class CounterContainer extends Component {
     constructor(props){
         super(props); 
-          
         this.state = {
             count: 0
         };
@@ -13,7 +12,7 @@ class CounterContainer extends Component {
         this.decrement = this.decrement.bind(this);
         this.reset = this.reset.bind(this);
     }
-        
+
     increment(){        
         this.setState((prevState) => {
             return {
@@ -38,42 +37,20 @@ class CounterContainer extends Component {
         })
     }
 
-    /*static getDerivedStateFromProps(nextProps, prevState) {
-        console.log('getDerivedStateFromProps'
-            + ' --nextProps= ' + nextProps.count
-            + ' --prevState= ' + prevState.count);
+    UNSAFE_componentWillReceiveProps(itemProps) {
+        console.log('Update метод у единицы счётчика')
+        if (this.state.count % 2 === 0 && itemProps.operation === 'increment') {
+            this.increment();
+        } else if (this.state.count % 2 !== 0 && itemProps.operation === 'decrement') {
+            this.decrement();
+        } else if (itemProps.operation === 'reset'){
+            this.reset();
+        }
     }
-
-    componentDidMount() {
-        console.log('componentDidMount: ' + this.state.count);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('shouldComponentUpdate'
-            + ' --nextProps= ' + nextProps.count
-            + ' --nextState= ' + nextState.count);
-    }
-
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-        console.log('getSnapshotBeforeUpdate'
-            + ' --prevProps= ' + prevProps.count
-            + ' --prevState= ' + prevState.count);
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('>componentDidUpdate()'
-            + ' --prevProps= ' + prevProps.count
-            + ' --prevState= ' + prevState.count
-            + ' --snapshot= ' + snapshot);
-    }
-
-    componentWillUnmount() {
-        console.log('componentWillUnmount');
-    }*/
 
     render() {
+        console.log('Mounting and Update методы у CounterContainer')
         const { count } = this.state;
-
         const props = {
             count,
             increment: this.increment,
