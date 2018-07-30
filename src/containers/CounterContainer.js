@@ -15,6 +15,7 @@ class CounterContainer extends Component {
 
     increment(){        
         this.setState((prevState) => {
+            console.log(prevState.p)
             return {
                 count: prevState.count + 1
             }
@@ -38,7 +39,7 @@ class CounterContainer extends Component {
     }
 
     UNSAFE_componentWillReceiveProps(itemProps) {
-        console.log('Update метод у единицы счётчика')
+        console.log('Update метод у единицы счётчика');
         if (this.state.count % 2 === 0 && itemProps.operation === 'increment') {
             this.increment();
         } else if (this.state.count % 2 !== 0 && itemProps.operation === 'decrement') {
