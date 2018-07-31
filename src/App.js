@@ -6,6 +6,7 @@ import MainCounterContainer from './Pages/Counters/MainCounter/Container/MainCou
 import About from './Pages/About/View/index';
 import Error from './Pages/Error/View/index';
 import Menu from './Components/Menu/View/index';
+import LoginContainer from './Pages/Login/Container/LoginContainer';
 
 const App = () => {
     return (
@@ -15,7 +16,8 @@ const App = () => {
             <Route exact path={process.env.PUBLIC_URL + '/'} component={Menu}/>
             <Route path={process.env.PUBLIC_URL + '/about'} component={About}/>
             <Route path={process.env.PUBLIC_URL + '/counters'} component={MainCounterContainer}/>
-            <Route  component={Error}/>
+            <Route path={process.env.PUBLIC_URL + '/login'} component={LoginContainer}/>
+            <Route component={Error}/>
           </Switch>
         </div>
         </BrowserRouter>

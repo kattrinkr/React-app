@@ -13,8 +13,9 @@ const Menu = ({tab, classes}) => {
     <AppBar position="static">
       <Tabs value={tab}
       centered>
-        <Link to='/about' value={'about'} className={classes.link}><Tab label='О нас'/></Link>
-        <Link to='/counters'  value={'counters'} className={classes.link}><Tab label='Счётчики'/></Link>
+        <Link to={process.env.PUBLIC_URL + '/about'} value='about' className={classes.link}><Tab label='О нас'/></Link>
+        <Link to={process.env.PUBLIC_URL + '/counters'}  value='counters' className={classes.link}><Tab label='Счётчики'/></Link>
+        <Link to={process.env.PUBLIC_URL + '/login'}  value='login' className={classes.link}><Tab label='Войти'/></Link>
       </Tabs>
     </AppBar>
   )
