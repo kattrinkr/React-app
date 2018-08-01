@@ -1,34 +1,45 @@
 const Styles = theme => ({
+    h1: {
+        color: '#757575',
+        fontSize: '45px',
+        textAlign: 'center'
+    },
+
+    instruction: {
+        fontSize: '20px',
+        textAlign: 'center'
+    },
+
     form: {
         width: '15%',
-        margin: '50px auto',
+        margin: '70px auto',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'static'
     },
 
     input: {
-        width: '200px',
-        height: '20px',
-        margin: '5px',
-        borderRadius: '10px',
-        padding: '5px',
-        backgroundColor: 'white'
+        width: '100%',
+        flex: '1 1 60px',
+        fontSize: '18px'
     },
 
     button: {
-        fontSize: '14px',
-        color: 'white',
-        backgroundColor: '#3f51b5',
-        border: 'none',
-        borderRadius: '10px',
-        height: '30px',
-        width: '70px',
-        cursor: 'pointer'
+        margin: '20px',
+        width: '110px'
+    },
+
+    realTime: {
+        position: 'absolute',
+        top: '270px',
+        left: '1110px',
+        display: 'flex',
+        flexDirection: 'column',
     },
 
     p: {
-        textAlign: 'center'
+        fontSize: '18px'
     }
   });
   

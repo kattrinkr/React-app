@@ -1,12 +1,13 @@
 import React from 'react'
+
 import { BrowserRouter } from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom'
 
-import MainCounterContainer from './Pages/Counters/MainCounter/Container/MainCounterContainer';
-import About from './Pages/About/View/index';
-import Error from './Pages/Error/View/index';
-import Menu from './Components/Menu/View/index';
-import LoginContainer from './Pages/Login/Container/LoginContainer';
+import Menu from './Components/Menu';
+import About from './Pages/About';
+import MainCounterContainer from './Pages/Counters';
+import LoginContainer from './Pages/Login';
+import Error from './Pages/Error';
 
 const App = () => {
     return (

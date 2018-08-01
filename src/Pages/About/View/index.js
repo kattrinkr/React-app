@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -7,8 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 import Styles from './styles';
-import Menu from '../../../Components/Menu/View/index';
-
+import {IMAGES} from '../Constants'
+import Menu from '../../../Components/Menu';
 const About = ({classes}) => (
     <div className={classes.wrapper}> 
       <Menu tab='about'/>
@@ -21,7 +22,7 @@ const About = ({classes}) => (
         </Typography>
         <Card>
           <CardContent>
-            <img src={require('./images/programmers.jpg')} alt='programmers'/>
+            <img src={IMAGES.programmers.src} alt={IMAGES.programmers.alt}/>
           </CardContent>
           <CardActions>
             <Button variant="contained" href='https://www.itechart.com/' target='_blank' className={classes.button}>

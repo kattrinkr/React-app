@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import Login from '../View/index'
+import Login from '../View'
+import {REG, MIN_VALUE_FOR_PASSWORD} from '../Constants'
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -8,7 +9,10 @@ class LoginContainer extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            emailError: false,
+            passwordError: false,
+            firstValidation: false
         }
 
         this.emailChange = this.emailChange.bind(this);
@@ -16,38 +20,59 @@ class LoginContainer extends Component {
         this.validator = this.validator.bind(this);
     }
     
-    emailChange() {
-        const EMAIL = document.getElementById('email');
-        EMAIL.addEventListener('input', (event) => {
+    emailChange({target}) {
+        let email = target.value.trim()
+        this.setState(() => {
+            return {
+                email: email
+            }
+        })
+        if (this.state.emailError === true) {
+            if (REG.test(target.value)) {
+                this.setState(() => {
+                    return {
+                        emailError: false
+                    }
+                })
+            }
+        } else if (!REG.test(target.value) && this.state.firstValidation) {
             this.setState(() => {
                 return {
-                    email: EMAIL.value
+                    emailError: true
                 }
-            })      
-        });
+            })
+        }
     }
 
-    passwordChange() {
-        const PASSWORD = document.getElementById('password');
-        PASSWORD.addEventListener('input', (event) => {
+    passwordChange({target}) {
+        this.setState(() => {
+            return {
+                password: target.value
+            }
+        }) 
+        if (this.state.passwordError === true) {
+            if (target.value.length >= MIN_VALUE_FOR_PASSWORD) {
+                this.setState(() => {
+                    return {
+                        passwordError: false
+                    }
+                })
+            }
+        } else if ((target.value.length < MIN_VALUE_FOR_PASSWORD) && this.state.firstValidation) {
             this.setState(() => {
                 return {
-                    password: PASSWORD.value
+                    passwordError: true
                 }
-            })       
-        });
+            })
+        }
     }
 
-    validator() {        
-        const EMAIL = document.getElementById('email');
-        const PASSWORD = document.getElementById('password');
-        const REG = /^(\S+)@([a-z0-9-]+)(\.)([a-z]{2,4})(\.?)([a-z]{0,4})+$/;
-        const MinValueForPassword = 6;
+    validator(event) {        
+        const EMAIL = this.state.email;
+        const PASSWORD = this.state.password;
         
-        if (REG.test(EMAIL.value) && PASSWORD.value.length >= MinValueForPassword) {
-            console.log(`Email: ${EMAIL.value} Password: ${PASSWORD.value}`);
-            EMAIL.value = '';
-            PASSWORD.value ='';
+        if (REG.test(EMAIL) && PASSWORD.length >= MIN_VALUE_FOR_PASSWORD) {
+            console.log(`Email: ${EMAIL} Password: ${PASSWORD}`);
             this.setState(() => {
                 return {
                     email: '',
@@ -55,18 +80,35 @@ class LoginContainer extends Component {
                 }
             })
         } else {
-            alert('Некорректный Email или недостаточно символов в пароле. Попробуйте еще раз.');
+            if (REG.test(EMAIL) === false) {
+                this.setState(() => {
+                    return {
+                        emailError: true,
+                        firstValidation: true
+                    }
+                })
+            } 
+            if ((PASSWORD.length >= MIN_VALUE_FOR_PASSWORD) === false) {
+                this.setState(() => {
+                    return {
+                        passwordError: true,
+                        firstValidation: true
+                    }
+                })
+            }
         }
     }
 
     render() {
-        const {email, password} = this.state;
+        const {email, password, emailError, passwordError} = this.state;
         const props = {
             emailChange: this.emailChange,
             passwordChange: this.passwordChange,
             validator: this.validator,
             email,
-            password
+            password, 
+            emailError, 
+            passwordError
         }
 
         return <Login {...props} />;
