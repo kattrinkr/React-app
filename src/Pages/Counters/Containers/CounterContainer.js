@@ -31,10 +31,8 @@ class CounterContainer extends Component {
     }
 
     reset(){
-        this.setState(() => {
-            return {
-                count: 0
-            }
+        this.setState( {
+            count: 0
         })
     }
 

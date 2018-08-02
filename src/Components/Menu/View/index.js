@@ -15,15 +15,11 @@ const Menu = ({tab, classes}) => {
     <AppBar position="static">
       <Tabs value={tab}
       centered>
-        <Link to={LINKS.about.path} value='about' className={classes.link}>
-          <Tab label={LINKS.about.label}/>
+        {LINKS.map((item) => (
+        <Link to={item.path} value={item.value} className={classes.link} key={item.value}>
+          <Tab label={item.label}/>
         </Link>
-        <Link to={LINKS.counters.path}  value='counters' className={classes.link}>
-          <Tab label={LINKS.counters.label}/>
-        </Link>
-        <Link to={LINKS.login.path}  value='login' className={classes.link}>
-          <Tab label={LINKS.login.label}/>
-        </Link>
+        ))}
       </Tabs>
     </AppBar>
   )

@@ -38,11 +38,9 @@ class MainCounterContainer extends Component {
     }
 
     reset(){
-        this.setState(() => {
-            return {
-                countOfCounters: 1,
-                resetState: true
-            }
+        this.setState( {
+            countOfCounters: 1,
+            resetState: true
         }) 
     }
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Login from '../View'
+import LoginRedux from '../View'
 import { emailChecker, passwordChecker } from '../Servises/checker'
 
-class LoginContainer extends Component {
+class LoginReduxContainer extends Component {
     constructor(props) {
         super(props);
 
@@ -69,8 +69,8 @@ class LoginContainer extends Component {
             submitFaild
         }
 
-        return <Login {...props} />;
+        return <LoginRedux {...props} />;
     }
 }
 
-export default LoginContainer;
+export default LoginReduxContainer;

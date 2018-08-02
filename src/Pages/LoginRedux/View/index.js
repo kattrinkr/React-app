@@ -8,10 +8,10 @@ import Button from '@material-ui/core/Button';
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
 
-const Login = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFaild, classes}) => {
+const LoginRedux = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFaild, classes}) => {
     return (
       <div> 
-          <Menu tab='login'/>
+          <Menu tab='login-redux'/>
           <h1 className={classes.h1}>Welcome to the validator!</h1>
           <p className={classes.instruction}>Email should be correct and password should consist of 6 symbols and more.</p>
           <form className={classes.form}>
@@ -50,7 +50,7 @@ const Login = ({emailChange, passwordChange, submitter, email, password, emailEr
     )
 }
 
-Login.propTypes = {
+LoginRedux.propTypes = {
     emailChange: PropTypes.func.isRequired,
     passwordChange: PropTypes.func.isRequired,
     submitter: PropTypes.func.isRequired,
@@ -60,4 +60,4 @@ Login.propTypes = {
     passwordError: PropTypes.string
 }
 
-export default withStyles(Styles)(Login)
+export default withStyles(Styles)(LoginRedux)
