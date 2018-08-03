@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
 
-const LoginRedux = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFaild, classes}) => {
+const LoginRedux = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFailed, classes}) => {
     return (
       <div> 
           <Menu tab='login-redux'/>
@@ -20,7 +21,7 @@ const LoginRedux = ({emailChange, passwordChange, submitter, email, password, em
                 className={classes.input} 
                 onInput={emailChange}
                 value={email}
-                error={!!emailError && submitFaild}
+                error={!!emailError && submitFailed}
               />
               <TextField
                 label="Password"
@@ -28,23 +29,25 @@ const LoginRedux = ({emailChange, passwordChange, submitter, email, password, em
                 className={classes.input} 
                 onInput={passwordChange}
                 value={password}
-                error={!!passwordError && submitFaild}
+                error={!!passwordError && submitFailed}
               />
-              <Button 
-                variant="contained" 
-                color="primary" 
-                onClick={submitter} 
-                className={classes.button}> Войти
-              </Button>
+              <Link to={(!(!!passwordError) && !(!!emailError)) ?  process.env.PUBLIC_URL + '/login-redux/succses' : process.env.PUBLIC_URL + '/login-redux/'}>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={submitter} 
+                  className={classes.button}> Войти
+                </Button>
+              </Link>
           </form>
           <div className={classes.realTime}>
               <p className={classes.p}>{email}</p>
               <p className={classes.p}>{password}</p>
           </div>
-           {submitFaild ? <div>
-                        <p className={classes.emailError}>{emailError }</p>
-                        <p className={classes.passwordError}>{passwordError}</p>
-                     </div> : null} 
+          {submitFailed ?   <div>
+                                <p className={classes.emailError}>{emailError }</p>
+                                <p className={classes.passwordError}>{passwordError}</p>
+                            </div> : null} 
             
       </div>
     )

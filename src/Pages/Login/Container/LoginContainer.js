@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Login from '../View'
-import { emailChecker, passwordChecker } from '../Servises/checker'
+import { emailValidator, passwordValidator } from '../Servises/checker'
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -10,8 +10,8 @@ class LoginContainer extends Component {
         this.state = {
             email: '',
             password: '',
-            emailError: emailChecker(null),
-            passwordError: passwordChecker(null),
+            emailError: emailValidator(null),
+            passwordError: passwordValidator(null),
             submitFaild: false
         }
 
@@ -24,14 +24,14 @@ class LoginContainer extends Component {
         let email = target.value.trim()
         this.setState( {
             email: email,
-            emailError: emailChecker(email),
+            emailError: emailValidator(email),
         })
     }
 
     passwordChange({target}) {
         this.setState({
                 password: target.value,
-                passwordError: passwordChecker(target.value)
+                passwordError: passwordValidator(target.value)
             }
         )
     }
@@ -44,8 +44,8 @@ class LoginContainer extends Component {
             this.setState( {
                 email: '',
                 password: '',
-                emailError: emailChecker(null),
-                passwordError: passwordChecker(null),
+                emailError: emailValidator(null),
+                passwordError: passwordValidator(null),
                 submitFaild: false
             })
         } else {
@@ -68,7 +68,6 @@ class LoginContainer extends Component {
             passwordError, 
             submitFaild
         }
-
         return <Login {...props} />;
     }
 }

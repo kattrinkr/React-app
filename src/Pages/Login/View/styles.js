@@ -47,7 +47,7 @@ const Styles = theme => ({
         fontSize: '14px',
         color: 'red',
         top: '300px',
-        left: '808px'
+        left: '816px'
     },
 
     passwordError: {
@@ -55,7 +55,7 @@ const Styles = theme => ({
         fontSize: '14px',
         color: 'red',
         top: '368px',
-        left: '808px'
+        left: '816px'
     }
   });
   

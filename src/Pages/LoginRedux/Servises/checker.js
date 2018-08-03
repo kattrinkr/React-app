@@ -1,6 +1,6 @@
 import {REG, MIN_VALUE_FOR_PASSWORD, ERRORS} from '../Constants'
 
-function emailChecker (EMAIL) {
+function emailValidator (EMAIL) {
     var result;
     if (!EMAIL) {
         result = ERRORS.email.empty
@@ -16,7 +16,7 @@ function emailChecker (EMAIL) {
     return result;
 }
 
-function passwordChecker(PASSWORD) {
+function passwordValidator(PASSWORD) {
     var result;
     if (!PASSWORD) {
         result = ERRORS.password.empty
@@ -28,4 +28,4 @@ function passwordChecker(PASSWORD) {
     return result;
 }
 
-export {emailChecker, passwordChecker}
+export {emailValidator, passwordValidator}
