@@ -8,7 +8,8 @@ const initialState = {
     password: '',
     emailError: emailValidator(null),
     passwordError: passwordValidator(null),
-    submitFailed: false
+    submitFailed: false,
+    signIn: false
 };
 
 const store = createStore(reducer, initialState);

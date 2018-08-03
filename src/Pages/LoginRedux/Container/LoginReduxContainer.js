@@ -12,9 +12,10 @@ class LoginReduxContainer extends Component {
     render() {
         return  <Container store={store}/>
     }
-}
+} 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
+    let state = store.getState();
     return {
         ...state
     };

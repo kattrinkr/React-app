@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
 
-const LoginRedux = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFailed, classes}) => {
+const LoginRedux = ({emailChange, passwordChange, submitter, email, password, emailError, passwordError, submitFailed, signIn, classes}) => {
     return (
       <div> 
           <Menu tab='login-redux'/>
@@ -31,7 +31,8 @@ const LoginRedux = ({emailChange, passwordChange, submitter, email, password, em
                 value={password}
                 error={!!passwordError && submitFailed}
               />
-              <Link to={(!(!!passwordError) && !(!!emailError)) ?  process.env.PUBLIC_URL + '/login-redux/succses' : process.env.PUBLIC_URL + '/login-redux/'}>
+              <Link to={(!!password && !!email && !(!!passwordError) && !(!!emailError) && signIn) ? process.env.PUBLIC_URL + '/login-redux/success' : process.env.PUBLIC_URL + '/login-redux/'}>
+                {console.log(`${!!password} ${!!email} ${!(!!passwordError)} ${!(!!emailError)} ${!signIn}`)}
                 <Button 
                   variant="contained" 
                   color="primary" 
@@ -60,7 +61,8 @@ LoginRedux.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     emailError: PropTypes.string,
-    passwordError: PropTypes.string
+    passwordError: PropTypes.string,
+    signIn: PropTypes.bool
 }
 
 export default withStyles(Styles)(LoginRedux)

@@ -20,12 +20,14 @@ const reducer = (state, action) => {
                   password: action.password,
                   emailError: action.emailError,
                   passwordError: action.passwordError,
-                  submitFailed: action.submitFailed  
+                  submitFailed: action.submitFailed,
+                  signIn:  action.signIn 
              }
           } else {
               result = {
                   ...state,
-                  submitFailed: action.submitFailed
+                  submitFailed: action.submitFailed,
+                  signIn:  action.signIn 
               }
           }
           return result;
