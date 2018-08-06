@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Redirect } from 'react-router-dom'
+
 import Success from '../View'
 import {store} from '../../../RootReducer/RootReducer'
 
@@ -10,7 +12,13 @@ class SuccessContainer extends Component {
             email: state.email,
             password: state.password
         }
-        return  <Success {...props}/>
+        var result;
+        if (!state.signIn) {
+            result = <Redirect to={process.env.PUBLIC_URL + '/login-redux'}/>
+        } else {
+            result = <Success {...props}/>
+        }
+        return result;
     }
 }
 

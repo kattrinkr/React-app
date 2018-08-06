@@ -5,8 +5,7 @@ function emailChange (event) {
     return {
         type: 'EMAIL_CHANGE',
         email: event.target.value,
-        emailError: emailValidator(event.target.value),
-        signIn: true
+        emailError: emailValidator(event.target.value)
     };
 };
 
@@ -14,8 +13,7 @@ function passwordChange (event) {
     return {
         type: 'PASSWORD_CHANGE',
         password: event.target.value,
-        passwordError: passwordValidator(event.target.value),
-        signIn: true
+        passwordError: passwordValidator(event.target.value)
     };
 };
 
@@ -26,13 +24,13 @@ function submitter () {
         console.log(`Email: ${state.email} Password: ${state.password}`);
         result = {
             ...state,
-            type: 'SUBMITTER'
+            type: 'SUBMITTER',
+            signIn: true
         }
     } else {
         result = {
             type: 'SUBMITTER',
             submitFailed: true,
-            signIn: true,
         }
     }
     return result;

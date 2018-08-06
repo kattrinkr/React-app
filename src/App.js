@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import {store} from './RootReducer/RootReducer'
 import Menu from './Components/Menu';
@@ -14,7 +14,6 @@ import LoginReduxContainer from './Pages/LoginRedux';
 import Error from './Pages/Error';
 
 const App = () => {
-    let state = store.getState();
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -23,9 +22,8 @@ const App = () => {
             <Route path={process.env.PUBLIC_URL + '/about'} component={About}/>
             <Route path={process.env.PUBLIC_URL + '/counters'} component={MainCounterContainer}/>
             <Route path={process.env.PUBLIC_URL + '/login'} component={LoginContainer}/>
-            
+            <Route path={process.env.PUBLIC_URL + '/login-redux/success'} component={SuccessContainer}/> 
             <Route path={process.env.PUBLIC_URL + '/login-redux'} component={LoginReduxContainer}/>
-            <Route path={state.signIn? process.env.PUBLIC_URL + '/login-redux/success' : process.env.PUBLIC_URL + '/login-redux'} component={SuccessContainer}/> 
             <Route component={Error}/>
           </Switch>
         </BrowserRouter>

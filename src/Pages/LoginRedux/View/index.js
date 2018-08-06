@@ -31,8 +31,7 @@ const LoginRedux = ({emailChange, passwordChange, submitter, email, password, em
                 value={password}
                 error={!!passwordError && submitFailed}
               />
-              <Link to={(!!password && !!email && !(!!passwordError) && !(!!emailError) && signIn) ? process.env.PUBLIC_URL + '/login-redux/success' : process.env.PUBLIC_URL + '/login-redux/'}>
-                {console.log(`${!!password} ${!!email} ${!(!!passwordError)} ${!(!!emailError)} ${!signIn}`)}
+              <Link to={(!!password && !!email && !(!!passwordError) && !(!!emailError)) ? process.env.PUBLIC_URL + '/login-redux/success' : process.env.PUBLIC_URL + '/login-redux/'}>
                 <Button 
                   variant="contained" 
                   color="primary" 
