@@ -4,13 +4,15 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom'
 
-import {store} from './RootReducer/RootReducer'
+import {store} from './Reducer/Reducer'
 import Menu from './Components/Menu';
 import About from './Pages/About';
 import MainCounterContainer from './Pages/Counters';
-import SuccessContainer from './Pages/LoginReduxSuccess/Container/SuccessContainer'
 import LoginContainer from './Pages/Login';
+import SuccessContainer from './Pages/LoginReduxSuccess/Container/SuccessContainer'
 import LoginReduxContainer from './Pages/LoginRedux';
+import FormSuccessContainer from './Pages/LoginReduxFormSuccess/Container/FormSuccessContainer'
+import LoginReduxFormContainer from './Pages/LoginReduxForm';
 import Error from './Pages/Error';
 
 const App = () => {
@@ -24,6 +26,8 @@ const App = () => {
             <Route path={process.env.PUBLIC_URL + '/login'} component={LoginContainer}/>
             <Route path={process.env.PUBLIC_URL + '/login-redux/success'} component={SuccessContainer}/> 
             <Route path={process.env.PUBLIC_URL + '/login-redux'} component={LoginReduxContainer}/>
+            <Route path={process.env.PUBLIC_URL + '/login-redux-form/success'} component={FormSuccessContainer}/> 
+            <Route path={process.env.PUBLIC_URL + '/login-redux-form'} component={LoginReduxFormContainer}/>
             <Route component={Error}/>
           </Switch>
         </BrowserRouter>

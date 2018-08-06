@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import LoginRedux from '.././View'
+import LoginReduxForm from '.././View'
 import * as Actions from '../Actions'
 import {emailValidator, passwordValidator} from '../Servises/checker'
 
 
-class LoginReduxContainer extends Component {
+class LoginReduxFormContainer extends Component {
     constructor(props){
         super(props); 
 
@@ -82,7 +82,7 @@ class LoginReduxContainer extends Component {
             passwordChange: this.passwordChange,
             submitter: this.submitter
         }
-        return <LoginRedux  state={state} actions={actions}/>
+        return <LoginReduxForm state={state} actions={actions}/>
     }
 } 
 
@@ -96,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxFormContainer);

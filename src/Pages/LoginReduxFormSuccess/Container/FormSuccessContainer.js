@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Success from '../View'
 import {store} from '../../../Reducer/Reducer'
 
-class SuccessContainer extends Component {
+class FormSuccessContainer extends Component {
     render() {
         const state = store.getState();
         const props = {
@@ -24,4 +24,4 @@ class SuccessContainer extends Component {
 
 
 
-export default SuccessContainer;
+export default FormSuccessContainer;

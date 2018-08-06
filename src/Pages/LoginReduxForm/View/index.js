@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
 
-const LoginRedux = ({actions, state, classes}) => {
+const LoginReduxForm = ({actions, state, classes}) => {
     return (
         <div> 
             <Menu tab='login-redux'/>
@@ -50,9 +50,9 @@ const LoginRedux = ({actions, state, classes}) => {
     )
 }
 
-LoginRedux.propTypes = {
+LoginReduxForm.propTypes = {
     actions: PropTypes.object.isRequired,
     state: PropTypes.object.isRequired
 }
 
-export default withStyles(Styles)(LoginRedux)
+export default withStyles(Styles)(LoginReduxForm)
