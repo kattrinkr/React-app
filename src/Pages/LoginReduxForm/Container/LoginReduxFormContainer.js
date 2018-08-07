@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 import { connect} from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { formValueSelector } from 'redux-form'
+import {reduxForm} from 'redux-form'
 
 import LoginReduxForm from '.././View'
-import * as Actions from '../Actions'
 import {emailValidator, passwordValidator} from '../Servises/checker'
-
 
 class LoginReduxFormContainer extends Component {
     constructor(props){
@@ -17,97 +16,85 @@ class LoginReduxFormContainer extends Component {
         this.submitter = this.submitter.bind(this);
     }
 
-    emailChange (event) {
-        const payload = {
-            email: event.target.value,
-            emailError: emailValidator(event.target.value)
-        }
-
-        this.props.actions.emailChange(payload);
-        if (this.props.form.ReduxForm.values.signIn || this.props.form.ReduxForm.values.submitFailed) {
-            this.props.form.ReduxForm.values.email = event.target.value;
-            this.props.form.ReduxForm.values.emailError = emailValidator(event.target.value);
+    emailChange (email) {
+        return {
+            email: email,
+            emailError: emailValidator(email)
         }
     }
 
-     passwordChange (event) {
-        const payload = {
-            password: event.target.value,
-            passwordError: passwordValidator(event.target.value)
-        }
-
-        this.props.actions.passwordChange(payload);
-        if (this.props.form.ReduxForm.values.signIn || this.props.form.ReduxForm.values.submitFailed) {
-            this.props.form.ReduxForm.values.password = event.target.value;
-            this.props.form.ReduxForm.values.passwordError = passwordValidator(event.target.value);
+    passwordChange (password) {
+        return {
+            password: password,
+            passwordError: passwordValidator(password)
         }
     } 
     
     submitter () {
-        let payload;
-        if (!this.props.reducerForm.emailError && !this.props.reducerForm.passwordError && this.props.reducerForm.email && this.props.reducerForm.password) {
-            console.log(`Email: ${this.props.reducerForm.email} Password: ${this.props.reducerForm.password}`);
-            payload = {
-                email: this.props.reducerForm.email,
-                password: this.props.reducerForm.password,
-                emailError: this.props.reducerForm.emailError,
-                passwordError: this.props.reducerForm.passwordError,
-                submitFailed: this.props.reducerForm.submitFailed,
+        let store = {
+            email: this.props.email,
+            emailError: emailValidator(this.props.email),
+            password: this.props.password,
+            passwordError: passwordValidator(this.props.password)
+        }
+        if (!store.emailError && !store.passwordError && store.email && store.password) {
+            console.log(`Email: ${store.email} Password: ${store.password}`);
+            store = {
+                email: store.email,
+                password: store.password,
+                emailError: store.emailError,
+                passwordError: store.passwordError,
                 signIn: true
             }
-            this.props.form.ReduxForm.values.signIn = true;
             this.props.history.push(`${process.env.PUBLIC_URL}`+'/login-redux-form/success');
-        } else {
-            payload = {
-                email: this.props.reducerForm.email,
-                password: this.props.reducerForm.password,
-                emailError: this.props.reducerForm.emailError,
-                passwordError: this.props.reducerForm.passwordError,
-                submitFailed: true,
-                signIn: this.props.reducerForm.signIn
-            }
-            this.props.form.ReduxForm.values.submitFailed = true
-        }
-        
-        this.props.form.ReduxForm.values.email = this.props.reducerForm.email;
-        this.props.form.ReduxForm.values.emailError = this.props.reducerForm.emailError;
-        this.props.form.ReduxForm.values.password = this.props.reducerForm.password;
-        this.props.form.ReduxForm.values.passwordError = this.props.reducerForm.passwordError;
-        this.props.actions.submitter(payload);
+        } 
     }
 
     render() {
-        const {email, password, emailError, passwordError, submitFailed, signIn} = this.props.reducerForm;
+        const { email, password } = this.props;
         const state = {
             email,
-            password,
-            emailError,
-            passwordError,
-            submitFailed,
-            signIn,
-            emailBool: !!email,
-            passwordBool: !!password,
-            emailErrorBool: !!emailError,
-            passwordErrorBool: !!passwordError
+            password
         }
         const actions = {
             emailChange: this.emailChange,
             passwordChange: this.passwordChange,
-            submitter: this.submitter,
-            submit: this.submit
+            submitter: this.submitter
         }
-        return <LoginReduxForm state={state} actions={actions}/>
+        
+        return <Redux state={state} actions={actions} onSubmit={(data) => console.log(data)}/>
     }
 } 
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        actions: bindActionCreators(Actions, dispatch)
+const validate = values => {
+    const errors = {};
+    let emailError = emailValidator(values.email);
+    let passwordError = passwordValidator(values.password);
+    if (emailError) {
+        errors.email = emailError
     }
+    if (passwordError) {
+        errors.password = passwordError
+    }
+    return errors
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxFormContainer);
+const Redux = reduxForm({
+    form: 'ReduxForm',
+    initialValues: {
+        email: '',
+        password: '',
+        emailError: emailValidator(null),
+        passwordError: passwordValidator(null),
+        submitFailed: false,
+        signIn: false
+    },
+    validate
+  })(LoginReduxForm)
+
+const selector = formValueSelector('ReduxForm')
+const mapStateToProps = (state) => ({
+    email: selector(state, 'email'),
+    password: selector(state, 'password')
+})
+export default connect(mapStateToProps)(LoginReduxFormContainer);

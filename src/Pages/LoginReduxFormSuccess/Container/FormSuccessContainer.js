@@ -8,14 +8,14 @@ import {store} from '../../../Reducer/Reducer'
 class FormSuccessContainer extends Component {
     render() {
         const state = store.getState();
-        const props = {
-            email: state.reducerForm.email,
-            password: state.reducerForm.password
-        }
         var result;
-        if (!state.reducerForm.signIn) {
+        if (!state.form.ReduxForm) {
             result = <Redirect to={process.env.PUBLIC_URL + '/login-redux-form'}/>
-        } else {
+        } else if (state.form.ReduxForm.anyTouched === true){
+            const props = {
+                email: state.form.ReduxForm.values.email,
+                password: state.form.ReduxForm.values.password
+            }
             result = <Success {...props}/>
         }
         return result;

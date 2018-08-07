@@ -21,8 +21,7 @@ const Styles = theme => ({
 
     input: {
         width: '100%',
-        flex: '1 1 70px',
-        fontSize: '18px'
+        fontSize: '10px'
     },
 
     button: {
@@ -46,7 +45,7 @@ const Styles = theme => ({
         position: 'absolute',
         fontSize: '14px',
         color: 'red',
-        top: '300px',
+        top: '280px',
         left: '816px'
     },
 
@@ -54,7 +53,7 @@ const Styles = theme => ({
         position: 'absolute',
         fontSize: '14px',
         color: 'red',
-        top: '368px',
+        top: '348px',
         left: '816px'
     }
   });
