@@ -9,11 +9,11 @@ class SuccessContainer extends Component {
     render() {
         const state = store.getState();
         const props = {
-            email: state.email,
-            password: state.password
+            email: state.reducer.email,
+            password: state.reducer.password
         }
         var result;
-        if (!state.signIn) {
+        if (!state.reducer.signIn) {
             result = <Redirect to={process.env.PUBLIC_URL + '/login-redux'}/>
         } else {
             result = <Success {...props}/>

@@ -9,12 +9,12 @@ class FormSuccessContainer extends Component {
     render() {
         const state = store.getState();
         const props = {
-            email: state.email,
-            password: state.password
+            email: state.reducerForm.email,
+            password: state.reducerForm.password
         }
         var result;
-        if (!state.signIn) {
-            result = <Redirect to={process.env.PUBLIC_URL + '/login-redux'}/>
+        if (!state.reducerForm.signIn) {
+            result = <Redirect to={process.env.PUBLIC_URL + '/login-redux-form'}/>
         } else {
             result = <Success {...props}/>
         }

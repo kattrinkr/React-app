@@ -38,25 +38,25 @@ class LoginReduxContainer extends Component {
     
     submitter () {
         let payload;
-        if (!this.props.emailError && !this.props.passwordError && this.props.email && this.props.password) {
-            console.log(`Email: ${this.props.email} Password: ${this.props.password}`);
+        if (!this.props.reducer.emailError && !this.props.reducer.passwordError && this.props.reducer.email && this.props.reducer.password) {
+            console.log(`Email: ${this.props.reducer.email} Password: ${this.props.reducer.password}`);
             payload = {
-                email: this.props.email,
-                password: this.props.password,
-                emailError: this.props.emailError,
-                passwordError: this.props.passwordError,
-                submitFailed: this.props.submitFailed,
+                email: this.props.reducer.email,
+                password: this.props.reducer.password,
+                emailError: this.props.reducer.emailError,
+                passwordError: this.props.reducer.passwordError,
+                submitFailed: this.props.reducer.submitFailed,
                 signIn: true
             }
             this.props.history.push(`${process.env.PUBLIC_URL}`+'/login-redux/success');
         } else {
             payload = {
-                email: this.props.email,
-                password: this.props.password,
-                emailError: this.props.emailError,
-                passwordError: this.props.passwordError,
+                email: this.props.reducer.email,
+                password: this.props.reducer.password,
+                emailError: this.props.reducer.emailError,
+                passwordError: this.props.reducer.passwordError,
                 submitFailed: true,
-                signIn: this.props.signIn
+                signIn: this.props.reducer.signIn
             }
         }
         
@@ -64,7 +64,7 @@ class LoginReduxContainer extends Component {
     }
 
     render() {
-        const {email, password, emailError, passwordError, submitFailed, signIn} = this.props;
+        const {email, password, emailError, passwordError, submitFailed, signIn} = this.props.reducer;
         const state = {
             email,
             password,

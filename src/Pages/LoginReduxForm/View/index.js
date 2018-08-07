@@ -4,30 +4,32 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {reduxForm} from 'redux-form'
 
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
+import {emailValidator, passwordValidator} from '../Servises/checker'
 
-const LoginReduxForm = ({actions, state, classes}) => {
+let LoginReduxForm = ({actions, state, classes}) => {
     return (
         <div> 
-            <Menu tab='login-redux'/>
+            <Menu tab='login-redux-form'/>
             <h1 className={classes.h1}>Welcome to the validator!</h1>
             <p className={classes.instruction}>Email should be correct and password should consist of 6 symbols and more.</p>
-            <form className={classes.form}>
+            <form className={classes.form}> 
                 <TextField 
+                name="email"
                 label="Email"
                 className={classes.input} 
                 onInput={actions.emailChange}
-                value={state.email}
                 error={state.emailErrorBool && state.submitFailed}
                 />
                 <TextField
+                name="password"
                 label="Password"
                 type="password" 
                 className={classes.input} 
                 onInput={actions.passwordChange}
-                value={state.password}
                 error={state.passwordErrorBool && state.submitFailed}
                 />
                 <Button 
@@ -55,4 +57,14 @@ LoginReduxForm.propTypes = {
     state: PropTypes.object.isRequired
 }
 
-export default withStyles(Styles)(LoginReduxForm)
+export default withStyles(Styles)(reduxForm({
+    form: 'ReduxForm',
+    initialValues: {
+        email: '',
+        password: '',
+        emailError: emailValidator(null),
+        passwordError: passwordValidator(null),
+        submitFailed: false,
+        signIn: false
+    }
+  })(LoginReduxForm))

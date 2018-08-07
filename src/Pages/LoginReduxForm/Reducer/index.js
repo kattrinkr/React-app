@@ -9,7 +9,7 @@ const initialState = {
     signIn: false
 };
 
-const reducer = (state = initialState, action) => {
+const reducerForm = (state = initialState, action) => {
     var result;
     switch (action.type) {
         case 'EMAIL_CHANGE': 
@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
                 emailError: action.emailError,
                 passwordError: action.passwordError,
                 submitFailed: action.submitFailed,
-                signIn:  action.signIn 
+                signIn: action.signIn 
             }
             break; 
         default: 
@@ -45,4 +45,4 @@ const reducer = (state = initialState, action) => {
     return result; 
 }
 
-export default reducer
+export default reducerForm
