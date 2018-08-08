@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import { connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { formValueSelector } from 'redux-form'
 
 import LoginReduxForm from '.././View'
 import {emailValidator, passwordValidator} from '../Servises/checker'
+import * as Actions from '../Actions'
 
 class LoginReduxFormContainer extends Component {
     constructor(props){
@@ -28,8 +30,7 @@ class LoginReduxFormContainer extends Component {
     
     onSubmit (data) {
         console.log(`Email: ${data.email} Password: ${data.password}`);
-        data.email = '';
-        data.password = '';
+        this.props.actions.setData(data);
         this.props.history.push(`${process.env.PUBLIC_URL}`+'/login-redux-form/success');
     }
 
@@ -49,9 +50,16 @@ class LoginReduxFormContainer extends Component {
 }
 
 const selector = formValueSelector('ReduxForm')
+
 const mapStateToProps = (state) => ({
     email: selector(state, 'email'),
     password: selector(state, 'password')
 })
 
-export default connect(mapStateToProps)(LoginReduxFormContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxFormContainer);

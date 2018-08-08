@@ -5,30 +5,19 @@ const initialState = {
 
 const reducerForm = (state = initialState, action) => {
     var result;
-    if (action.meta) {
-        switch (action.meta.field) {
-            case 'email': 
+        switch (action.type) {
+            case 'SET_DATA': 
                 result = {
                     ...state,
-                    email: action.payload 
-                }
-            break;
-            case 'password': 
-                result = {
-                    ...state,
-                    password: action.payload 
+                    email: action.email,
+                    password: action.password 
                 }
             break;
             default: 
-                result = {
-                    ...state
-                }
+                result = state
             break;
         } 
-        return result; 
-    } else {
-        return state;
-    }
+    return result;
 }
 
 export default reducerForm

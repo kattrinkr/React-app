@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom'
+import { connect} from 'react-redux'
 
 import Success from '../View'
-import {store} from '../../../Reducer/Reducer'
 
 class FormSuccessContainer extends Component {
     render() {
-        const state = store.getState();
         var result;
-        if (!state.reducerForm.email && !state.reducerForm.password) {
+        if (!this.props.reducerForm.email && !this.props.reducerForm.password) {
             result = <Redirect to={process.env.PUBLIC_URL + '/login-redux-form'}/>
         } else {
-            console.log(state)
             const props = {
-                email: state.reducerForm.email,
-                password: state.reducerForm.password
+                email: this.props.reducerForm.email,
+                password: this.props.reducerForm.password
             }
             result = <Success {...props}/>
         }
@@ -23,6 +21,8 @@ class FormSuccessContainer extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return state
+}
 
-
-export default FormSuccessContainer;
+export default connect(mapStateToProps)(FormSuccessContainer);
