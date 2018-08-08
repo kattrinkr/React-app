@@ -9,12 +9,13 @@ class FormSuccessContainer extends Component {
     render() {
         const state = store.getState();
         var result;
-        if (!state.form.ReduxForm) {
+        if (!state.reducerForm.email && !state.reducerForm.password) {
             result = <Redirect to={process.env.PUBLIC_URL + '/login-redux-form'}/>
-        } else if (state.form.ReduxForm.anyTouched === true){
+        } else {
+            console.log(state)
             const props = {
-                email: state.form.ReduxForm.values.email,
-                password: state.form.ReduxForm.values.password
+                email: state.reducerForm.email,
+                password: state.reducerForm.password
             }
             result = <Success {...props}/>
         }

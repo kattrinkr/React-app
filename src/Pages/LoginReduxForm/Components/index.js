@@ -1,3 +1,3 @@
-import TextFieldContainer from './TextField/Container/textFieldContainer';
+import TextField from './TextField/View';
 
-export default TextFieldContainer;
+export default TextField;

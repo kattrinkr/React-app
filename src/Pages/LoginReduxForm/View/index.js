@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 import Menu from '../../../Components/Menu'
 import Styles from './styles';
-import TextFieldContainer from '../Components'
+import TextField from '../Components'
 
-let LoginReduxForm = ({actions, state, classes, handleSubmit}) => {
+let LoginReduxForm = ({email, password, classes, handleSubmit}) => {
     return (
         <div>
             <Menu tab='login-redux-form'/>
@@ -19,31 +19,30 @@ let LoginReduxForm = ({actions, state, classes, handleSubmit}) => {
                 <Field name="email"
                    floatingLabelText="Email" 
                    className={classes.input}
-                   component={TextFieldContainer}
+                   component={TextField}
                 />
                 <Field name="password"
                    floatingLabelText="Password" 
                    className={classes.input}
-                   component={TextFieldContainer}
+                   component={TextField}
                 />
                 <Button 
                   variant="contained" 
                   color="primary" 
-                  onClick={actions.submitter} 
                   className={classes.button}
                   type="submit"> Войти
                 </Button>
             </form>
             <div className={classes.realTime}>
-                <p className={classes.p}>{state.email}</p>
-                <p className={classes.p}>{state.password}</p>
+                <p className={classes.p}>{email}</p>
+                <p className={classes.p}>{password}</p>
             </div>
         </div>
     )
 }
 
 LoginReduxForm.propTypes = {
-    actions: PropTypes.object.isRequired,
-    state: PropTypes.object.isRequired
+    email: PropTypes.string,
+    password: PropTypes.string
 }
-export default withStyles(Styles)(LoginReduxForm)
+export default withStyles(Styles)(reduxForm()(LoginReduxForm))
